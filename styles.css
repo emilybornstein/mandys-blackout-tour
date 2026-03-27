@@ -651,23 +651,68 @@ section {
 }
 
 @media (max-width: 600px) {
-    .budget-table {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    .budget-table thead {
+        display: none;
     }
 
-    .budget-table table {
-        min-width: 500px;
+    .budget-table tbody tr {
+        display: block;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        background: white;
+        border-bottom: none;
+        border-left: 3px solid var(--accent-rust);
     }
 
-    .budget-table th,
-    .budget-table td {
-        padding: 0.6rem 0.5rem;
-        font-size: 0.8rem;
+    .budget-table tbody td {
+        display: block;
+        text-align: left !important;
+        padding: 0.25rem 0;
+        font-size: 0.9rem;
+    }
+
+    .budget-table tbody td:first-child {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .budget-table tbody td:nth-child(2) {
+        text-align: left !important;
+    }
+
+    .budget-table tbody td:nth-child(2)::before {
+        content: "Cost: ";
+        font-weight: 400;
+        color: var(--text-muted);
+    }
+
+    .budget-table tbody td:nth-child(3)::before {
+        content: "Status: ";
+        font-weight: 400;
+        color: var(--text-muted);
     }
 
     .item-note {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    .budget-table tfoot .total-row {
+        display: block;
+        padding: 1rem;
+    }
+
+    .budget-table tfoot .total-row td {
+        display: block;
+        text-align: left !important;
+        padding: 0.25rem 0;
+    }
+
+    .budget-table tfoot .total-row td:nth-child(2) {
+        font-size: 1.1rem;
+    }
+
+    .budget-table tfoot .note-row td {
+        padding: 0.75rem 1rem;
     }
 }
 
