@@ -66,33 +66,34 @@ window.addEventListener('load', () => {
     }, 200);
 });
 
-// Touch swipe support for mobile
-let touchStartY = 0;
-let touchEndY = 0;
+// Touch swipe support - disabled on mobile for natural scrolling
+// Only enable on larger screens where scroll-snap is active
+if (window.innerWidth > 768) {
+    let touchStartY = 0;
+    let touchEndY = 0;
 
-document.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-}, { passive: true });
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
 
-document.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-}, { passive: true });
+    document.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, { passive: true });
 
-function handleSwipe() {
-    const sections = document.querySelectorAll('section');
-    const current = Math.round(window.scrollY / window.innerHeight);
-    const swipeThreshold = 50;
+    function handleSwipe() {
+        const sections = document.querySelectorAll('section');
+        const current = Math.round(window.scrollY / window.innerHeight);
+        const swipeThreshold = 50;
 
-    if (touchStartY - touchEndY > swipeThreshold) {
-        // Swipe up - go to next section
-        const next = Math.min(current + 1, sections.length - 1);
-        sections[next].scrollIntoView({ behavior: 'smooth' });
-    }
+        if (touchStartY - touchEndY > swipeThreshold) {
+            const next = Math.min(current + 1, sections.length - 1);
+            sections[next].scrollIntoView({ behavior: 'smooth' });
+        }
 
-    if (touchEndY - touchStartY > swipeThreshold) {
-        // Swipe down - go to previous section
-        const prev = Math.max(current - 1, 0);
-        sections[prev].scrollIntoView({ behavior: 'smooth' });
+        if (touchEndY - touchStartY > swipeThreshold) {
+            const prev = Math.max(current - 1, 0);
+            sections[prev].scrollIntoView({ behavior: 'smooth' });
+        }
     }
 }

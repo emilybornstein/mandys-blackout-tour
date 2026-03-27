@@ -62,6 +62,12 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (max-width: 768px) {
+    html {
+        scroll-snap-type: none;
+    }
+}
+
 body {
     background: var(--bg-primary);
     color: var(--text-primary);
